@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice() {
+            let compSelection = Math.floor(Math.random() * 3);
+            switch(compSelection) {
+                case 0:
+                    return "rock";
+                case 1:
+                    return "paper";
+                case 2:
+                    return "scissors";
+            }
+        }
+
+        function getPlayerChoice() {
+            return window.prompt("Please enter rock, paper, or scissors.").toLowerCase()
+        }
+
+        function playRound(playerChoice, computerChoice) {
+            console.log("Player chose: " + playerChoice +"\nComputer chose: " + computerChoice);
+            if (playerChoice === computerChoice) {
+                console.log("These are the same dear boy!");
+                return "tie";
+            } else if (playerChoice === "rock" && computerChoice === "scissors") {
+                console.log(playerChoice + " beats " + computerChoice + ", you win!");
+                return "player";
+            } else if (playerChoice === "rock" && computerChoice === "paper") {
+                console.log(computerChoice + " beats " + playerChoice +", you lose!");
+                return "computer";
+            } else if (playerChoice === "paper" && computerChoice === "rock") {
+                console.log(playerChoice + " beats " + computerChoice + ", you win!");
+                return "player";
+            } else if (playerChoice === "paper" && computerChoice === "scissors") {
+                console.log(computerChoice + " beats " + playerChoice +", you lose!");
+                return "computer";
+            } else if (playerChoice === "scissors" && computerChoice === "paper") {
+                console.log(playerChoice + " beats " + computerChoice + ", you win!");
+                return "player";
+            } else if (playerChoice === "scissors" && computerChoice === "rock") {
+                console.log(computerChoice + " beats " + playerChoice +", you lose!");
+                return "computer";
+            } else {
+                console.log("Invalid input.")
+                return "invalid";
+            }
+        }
+
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+            let outcome = "";
+            
+            for (let i = 0; i < 5; i++) {
+                switch(playRound(getPlayerChoice(), getComputerChoice())) {
+                    case "player":
+                        playerScore += 1;
+                        break;
+                    case "computer":
+                        computerScore += 1;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            if (playerScore === computerScore) {
+                outcome = "tie, get better!";
+            } else if (playerScore > computerScore) {
+                outcome = "player wins!";
+            } else {
+                outcome = "computer wins!";
+            }
+            return console.log("Player scored " + playerScore + "\nComputer scored " + computerScore + "\n\nResults are in...\n" + outcome);
+        }
+
+        game();
+
+    </script>
+    
+</body>
+</html>
